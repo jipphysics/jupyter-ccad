@@ -1,10 +1,10 @@
 # jupyter-ccad
 
-## ¿Que ventajas trae usar **jupyter notebooks** `jupyter`?
+## ¿Que ventajas trae usar **jupyter notebooks**?
 
-1.
+1. Ud. puede programar, calcular, analizar resultados, comentarlos y graficarlos, en un mismo entorno de trabajo.
 
-2.
+2. Facilita el paradigma de programación interactiva o [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (Read, Eval, Print, Loop). Esto le permite a Ud. evaluar el código a medida que lo va desarrollando, acelerando el proceso y reduciendo la probabilidad de que surgan errores.
 
 ## ¿Que ventajas trae usar **jupyter notebooks** en el cluster `jupyter` del CCAD?
 
