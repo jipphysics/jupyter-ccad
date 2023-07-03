@@ -34,4 +34,40 @@
   
     * Si a Ud. le interesa usar notebooks de **Julia** también puede utilizar **micromamba**. Alternativamente, puede realizar los siguientes pasos:
   
-        1. Bajar Julia
+        1. Seleccione y copie de [https://julialang.org/downloads/](https://julialang.org/downloads/) el archivo comprimido con la versión de Julia que desea bajar. Por ejemplo:
+        
+                https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
+            
+            corresponde a `Generic Linux on x86 [help] 	64-bit (glibc)`.
+  
+        2. Baje dicho archivo al nodo `jupyter` ejecutando el siguiente comando en la terminal de bash del nodo `jupyter`:
+        
+                [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
+            
+        3. Descomprima dicho archivo ejecutando
+        
+                [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
+            
+            Esto creará una carpeta `julia-1.9.1` dentro de su carpeta de usuario. Allí se encuentran los ejecutables de **Julia**.
+          
+        4. Inicie Julia ejecutando
+        
+                [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
+                
+            Esto iniciará una consola de **Julia**
+            
+                   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+                  (_)     | (_) (_)    |
+                   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+                  | | | | | | |/ _` |  |
+                  | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+                 _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+                |__/                   |
+
+                julia>
+                
+        5. Instale los siguientes paquetes de **Julia**
+           
+                julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings")
+                
+        
