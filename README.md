@@ -66,7 +66,7 @@
 
                 julia>
                 
-        5. Instale los siguientes paquetes de **Julia**
+        5. Instale algunos paquetes de **Julia** necesarios, ejecutando:
            
                 julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings")
                 
