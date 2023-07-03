@@ -10,7 +10,7 @@
 
 1. Poder usar notebooks de [Julia](https://julialang.org/), [Python](https://www.python.org/) o [R](https://www.r-project.org/) para desarrollar y testear código en el nodo `jupyter` del **CCAD**.
 
-2. Luego, usar el cluster `serafin` o `mendieta` para lanzar grandes corridas.
+2. Luego, usar el cluster `serafin` y/o el cluster `mendieta` para lanzar grandes corridas.
 
 3. Usar [serialización](https://es.wikipedia.org/wiki/Serializaci%C3%B3n) para almacenar los datos. Por ejemplo, usar [pickle](https://docs.python.org/3/library/pickle.html) en **Python** o [JLD2](https://github.com/JuliaIO/JLD2.jl) en **Julia**.
 
