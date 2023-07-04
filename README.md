@@ -74,7 +74,7 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
        
             julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("FileIO"); Pkg.add("JLD2")
                 
-### Instalando y iniciando Jupyter
+### Instalando e iniciando Jupyter
 
 **Julia** y **Jupyter** son programas diferentes. **Julia** es un lenguaje de programación y **Jupyter** un administrador de notebooks. A continuación instalaremos **Jupyter** vía **Julia**. Para ello:
                 
