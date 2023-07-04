@@ -29,50 +29,53 @@
         juan@laptop> ssh -L 8088:localhost:8088 usuario@jupyter.ccad.unc.edu.ar
         
     remplazando `usuario` por su nombre de usuario que le fué asignado al inscribirse. Si el puerto `8088` no funciona, pruebe con otros puertos. Por ejemplo `8080`, `8081` o incluso `1234`, etc. Si usa **Windows**, asegúrese que el puerto que intenta utilizar no está bloqueado.
+
+Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**, como se describe a continuación.
   
-### Instalando Julia  
+### Instalando Jupyter vía mamba
   
-Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**:
+Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos utilizar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html). En particular, le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD.
 
-* Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos utilizar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html). En particular, le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD.
 
-* Si a Ud. le interesa usar notebooks de **Julia** también puede utilizar **micromamba**. Alternativamente, puede realizar los siguientes pasos:
+### Instalando Julia 
+
+Si a Ud. le interesa usar notebooks de **Julia** también puede utilizar **micromamba**. Alternativamente, puede realizar los siguientes pasos:
   
-    1. Seleccione y copie de [https://julialang.org/downloads/](https://julialang.org/downloads/) el archivo comprimido con la versión de Julia que desea bajar. Por ejemplo:
+1. Seleccione y copie de [https://julialang.org/downloads/](https://julialang.org/downloads/) el archivo comprimido con la versión de Julia que desea bajar. Por ejemplo:
 
-            https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
-        
-        corresponde a `Generic Linux on x86 [help] 	64-bit (glibc)`.
+    https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
 
-    2. Baje dicho archivo al nodo `jupyter` ejecutando el siguiente comando en la terminal de bash del nodo `jupyter`:
+corresponde a `Generic Linux on x86 [help] 	64-bit (glibc)`.
 
-            [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
-        
-    3. Descomprima dicho archivo ejecutando
+2. Baje dicho archivo al nodo `jupyter` ejecutando el siguiente comando en la terminal de bash del nodo `jupyter`:
 
-            [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
-        
-        Esto creará una carpeta `julia-1.9.1` dentro de su carpeta de usuario. Allí se encuentran los ejecutables de **Julia**.
-      
-    4. Inicie Julia ejecutando
+        [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
 
-            [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
-            
-        Esto iniciará una consola de **Julia**
-        
-               _       _ _(_)_     |  Documentation: https://docs.julialang.org
-              (_)     | (_) (_)    |
-               _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
-              | | | | | | |/ _` |  |
-              | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
-             _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
-            |__/                   |
+3. Descomprima dicho archivo ejecutando
 
-            julia>
-            
-    5. Ejecute el siguiente comando para instalar algunos paquetes de **Julia** que resultan necesarios para nuestros propósitos:
-       
-            julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("FileIO"); Pkg.add("JLD2")
+        [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
+
+Esto creará una carpeta `julia-1.9.1` dentro de su carpeta de usuario. Allí se encuentran los ejecutables de **Julia**.
+
+4. Inicie Julia ejecutando
+
+        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
+    
+Esto iniciará una consola de **Julia**
+
+           _       _ _(_)_     |  Documentation: https://docs.julialang.org
+          (_)     | (_) (_)    |
+           _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+          | | | | | | |/ _` |  |
+          | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+         _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+        |__/                   |
+
+        julia>
+    
+5. Ejecute el siguiente comando para instalar algunos paquetes de **Julia** que resultan necesarios para nuestros propósitos:
+
+        julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("FileIO"); Pkg.add("JLD2")
                 
 ### Instalando e iniciando Jupyter
 
@@ -81,32 +84,53 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
 1. Active la libreria `IJulia` ejecutando en la consola de **Julia**:
 
         julia> using IJulia
+        
+2. Inicie una notebook ejecutando en la consola de **Julia**:        
+        
         julia> notebook()
         
-    **Julia** le preguntará si desea instalar **Jupyter** vía **Conda**:
+    La notebook no aparecerá en ninguna parte, porque aún faltan completar algunos pasos. En cambio, **Julia** le preguntará si desea instalar **Jupyter** vía **Conda**:
     
         julia> notebook()
         install Jupyter via Conda, y/n? [y]
 
-    Póngale que sí, y espere a que **Conda** se termine de instalar. Esto va a demorar un buen rato.
+    Póngale que sí (oprima `y`), y espere a que **Conda** se termine de instalar. Esto va a demorar un buen rato.
 
 2. Al terminarse de instalar **Conda**, deberá aparecer algo cómo lo que sigue:
 
         julia> notebook()
         [ Info: running setenv(`/home/jperotti/.julia/conda/3/x86_64/bin/jupyter notebook`,...
         
-   indicándole a Uds., entre otras cosas, donde se ha instalado **Conda** y **Jupyter**; típicamente dentro de un directorio oculto llamado `.julia/`.
+   indicándole a Uds., entre otras cosas, la carpeta en donde se ha instalado **Conda** y **Jupyter**. En este caso, en un directorio oculto llamado `.julia/` en su directorio de usario.
 
 3. A continuación, oprima `Ctrl. + C` para que se cierre la notebook, y luego salga de la consola de **Julia** ejecutando:
 
         julia> exit()
         
-4. Ha llegado el momento de iniciar el administrador de notebooks de **Julia** de manera remota. Para ello, ejecute **Julia** nuevamente, pero esta vez en modo `no-browser`. Es decir, en la consola de bash, ejecute:
+4. Finalmente, ha llegado el momento de iniciar de manera remota, el administrador de notebooks de **Jupyter** que instaló **Julia**. Para ello, ejecute:
 
-        [jperotti@jupyter ~]$ ~/.julia/conda/3/x86_64/bin/jupyter notebook --no-browser --port=1234
+        [jperotti@jupyter ~]$ ~/.julia/conda/3/x86_64/bin/jupyter notebook --no-browser --port=8088
         
    Deberá aparecer, entre otras cosas, un link como el siguiente:
    
-        http://localhost:1234/?token=346e35e52098854117eb109f5419111df556139c4a550320
+        http://localhost:8088/?token=346e35e52098854117eb109f5419111df556139c4a550320
 
-5. Copie el link y péguelo en su navegador. En el mismo, deberá abrirse el administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD, y deberá ver en el mismo el contenido de su carpeta de usuario.
+5. Copie el link y péguelo en el navegador de su computadora de escritorio. En el mismo, deberá abrirse un administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. Deberá ver en el mismo, el contenido de su carpeta de usuario en el CCAD.
+
+### Iniciando Jupyter en sesiones posteriores
+
+1. Conectese al nodo `jupyter` ejecutando en una terminal:
+
+        juan@laptop> ssh -L 8088:localhost:8088 usuario@jupyter.ccad.unc.edu.ar
+        
+    recordando remplazar `usuario` por su nombre de usuario.
+   
+2. Inicie el administrador de notebooks de **Julia** en modo `no-browser`. Para ello, ejecute
+
+        [jperotti@jupyter ~]$ ~/.julia/conda/3/x86_64/bin/jupyter notebook --no-browser --port=8088
+        
+    Cómo resultado, debería aparecerle una línea similar a la siguiente:        
+    
+        http://localhost:8088/?token=346e35e52098854117eb109f5419111df556139c4a550320    
+        
+3. Copie la linea en el navegador de su computadora de escritorio. Debería aparecerle el administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD.
