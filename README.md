@@ -26,9 +26,9 @@
 
 3. Desde una terminal de bash en su **Linux** (o consola equivalente en **Windows**), conéctese al nodo `jupyter` vía el comando:
 
-        juan@laptop> ssh -L 8088:localhost:8088 usuario@jupyter.ccad.unc.edu.ar
+        juan@laptop> ssh -L 8083:localhost:8083 usuario@jupyter.ccad.unc.edu.ar
         
-    remplazando `usuario` por su nombre de usuario que le fué asignado al inscribirse. Si el puerto `8088` no funciona, pruebe con otros puertos. Por ejemplo `8080`, `8081` o incluso `1234`, etc. Si usa **Windows**, asegúrese que el puerto que intenta utilizar no está bloqueado.
+    remplazando `usuario` por su nombre de usuario que le fué asignado al inscribirse. Si el puerto `8083` no funciona, pruebe con otros puertos. Por ejemplo `8080`, `8081` o incluso `1234`, etc. Si usa **Windows**, asegúrese que el puerto que intenta utilizar no está bloqueado.
 
 Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**, como se describe a continuación.
   
@@ -88,17 +88,17 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
         
 9. Inicie una sesión de **Jupyter**:
 
-        (notebook-env) [jperotti@jupyter ~]$ jupyter notebook --no-browser --port=8088        
+        (notebook-env) [jperotti@jupyter ~]$ jupyter notebook --no-browser --port=8083        
         
         To access the notebook, open this file in a browser:
             file:///home/jperotti/.local/share/jupyter/runtime/nbserver-3417387-open.html
         Or copy and paste one of these URLs:
-            http://localhost:8088/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
-         or http://127.0.0.1:8088/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
+            http://localhost:8083/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
+         or http://127.0.0.1:8083/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
         
 10. Entre la información arrojada por **Jupyter**, deberá encontrar una dirección similar a la siguiente:
 
-        http://localhost:8088/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
+        http://localhost:8083/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
         
     Copiela y peguela en el navegador de su computadora personal. Esto debería abrirle una sesión del administrador de notebooks de **Jupyter** en su navegador.
 
@@ -120,7 +120,54 @@ Este paso es alternativo. Lo incluimos para mostrarles como trabajar con git.
 
 ## Detaching y reattaching de notebooks usando `screen`
 
-Algunas veces resulta muy útil levantar una sesión de trabajo (que incluya el uso de una o varias notebooks de **Jupyter**) que sobreviva al cierre o a la desconección de la terminal de trabajo creada en el paso **3.**.
+Algunas veces resulta muy útil levantar una sesión de trabajo que sobreviva al cierre o a la desconección de la terminal de trabajo creada en el inciso **3.**. Es decir, resulta útil poder crear una sesión de la cuál podamos desconectarnos para volver a reconectarnos posteriormente desde la misma computadora o, incluso de alguna otra. Esto resulta útil, por ejemplo, para dejar programas corriendo, o sesiones con notebooks que requieran un tiempo considerable de iniciación.
+
+El comando [screen](https://linuxhint.com/linux-screen-command-tutorial/) permite crear y administrar sesiones de las que uno pueda desconectarse y reconectarse. A continuación damos un breve ejemplo:
+
+1. Cree una sesión de nombre `mi-sesion`:
+
+        (notebook-env) [jperotti@jupyter ~]$ screen -S mi-sesion
+       
+2. Levante un administrador de notebooks dentro de la sesión:
+
+        [jperotti@jupyter jupyter-ccad]$ jupyter notebook --no-browser --port=8083
+        ...
+            http://localhost:8083/?token=648d7a6b6e2343e75d1723456f3647a0a897ddaa4debd44d
+        ...
+        
+3. Abra el administrador de notebooks de **Jupyter** en su computadora, copiando el link anterior en el navegador. 
+
+4. Desde el administrador, abra la notebook `simulations.ipynb`. 
+
+5. Cierre el navegador. Esto no matará ni el administrador de notebooks ni la notebook.
+
+6. Vuelva a la terminal de bash y presione `Ctrl. a + d`. Esto hará un **detach** de la sesión llamada `mi-sesion`.
+
+7. Cierre el tunel con el nodo de `jupyter` typeando:
+
+        (notebook-env) [jperotti@jupyter jupyter-ccad]$ exit
+        
+8. Reconectese al nodo de `jupyter`:
+
+        juan@laptop> ssh -L 8083:localhost:8083 usuario@jupyter.ccad.unc.edu.ar
+        
+9. Liste las sesiones activas typeando:
+
+        [jperotti@jupyter ~]$ screen -ls        
+        There is a screen on:
+	        3468235.mi-sesion	(Detached)
+        
+    Vemos que existe una sesión activa llamada `mi-sesion`        
+        
+10. Reconectese a la sesión typeando
+
+        [jperotti@jupyter ~]$ screen -r mi-sesion
+
+    Esto debería mostrarle lo que veía en la sesión en el momento que se desconectó de la misma (ver inciso **6.**). En particular, debería ver nuevamente el link que le permite abrir la sesión de **Jupyter** en su navegador.
+
+11. Reabra el administrador de notebooks de **Jupyter**, copiando nuevamente el link en el navegador:
+
+12. Habra nuevamente la notebook `simulation.ipybn` en la que estaba trabajando.
 
 ## Serialización de datos
 
