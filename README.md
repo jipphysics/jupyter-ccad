@@ -100,6 +100,30 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
 
         http://localhost:8088/?token=5d58cbd50a995f886b91a6b2aa037f88a3cc3ca1d098b69f
         
-    Copiela y peguela en el navegador de su computadora personal. Esto debería abrirle una sesión del administrador de notebooks de **Jupyter** en su navegador.        
+    Copiela y peguela en el navegador de su computadora personal. Esto debería abrirle una sesión del administrador de notebooks de **Jupyter** en su navegador.
+
+11. Cierre el administrador de notebooks clickeando en 
 
 **IMPORTANTE:** El nº de puerto espeficado en el comando `ssh` tiene que ser el mismo especificado en el comando `jupyter`.
+
+## Clonando repositorios para trabajar
+
+Este paso es alternativo. Lo incluimos para mostrarles como trabajar con git. 
+    
+1. Clone en su carpeta de usuario el repositorio del presente tutorial:
+    
+        (notebook-env) [jperotti@jupyter ~]$ git clone git@github.com:jipphysics/jupyter-ccad.git
+        
+2. Cambie el directorio de trabajo al del repositorio clonado:
+    
+        (notebook-env) [jperotti@jupyter ~]$ cd jupyter-ccad/
+
+## Detaching y reattaching de notebooks usando `screen`
+
+Algunas veces resulta muy útil levantar una sesión de trabajo (que incluya el uso de una o varias notebooks de **Jupyter**) que sobreviva al cierre o a la desconección de la terminal de trabajo creada en el paso **3.**.
+
+## Serialización de datos
+
+## Paralelización usando threads
+
+## Corriendo notebooks en Serafín
