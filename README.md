@@ -109,4 +109,4 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
    
         http://localhost:1234/?token=346e35e52098854117eb109f5419111df556139c4a550320
 
-5. Copie el link y péguelo en su navegador. En el mismo, deberá abrirse el administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. Por ende, deberá ver en el mismo, el contenido de su carpeta de usuario en el CCAD.
+5. Copie el link y péguelo en su navegador. En el mismo, deberá abrirse el administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD, y deberá ver en el mismo el contenido de su carpeta de usuario.
