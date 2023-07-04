@@ -85,17 +85,23 @@
       
             Póngale que sí, y espere a que **Conda** se termine de instalar. Esto va a demorar un buen rato.
       
-        6. Al terminarse de instalar **Conda**, oprima `Ctrl. + C` para que se cancele la notebook y salga de la consola de Julia ejecutando:
+        6. Al terminarse de instalar **Conda**, deberá aparecer algo cómo lo que sigue:
+        
+                julia> notebook()
+                [ Info: running setenv(`/home/jperotti/.julia/conda/3/x86_64/bin/jupyter notebook`,...
+                
+           indicándole a Uds., entre otras cosas, donde se ha instalado **Conda** y **Jupyter**; típicamente dentro de un directorio oculto llamado `.julia/`.
+        
+        7. A continuación, oprima `Ctrl. + C` para que se cierre la notebook, y luego salga de la consola de **Julia** ejecutando:
         
                 julia> exit()
                 
-        7. Luego ejecute **Julia** nuevamente, pero esta vez en modo `no-browser`, ejecutando en la consola de bash:
+        7. Ha llegado el momento de iniciar el administrador de notebooks de **Julia** de manera remota. Para ello, ejecute **Julia** nuevamente, pero esta vez en modo `no-browser`. Es decir, en la consola de bash, ejecute:
         
                 [jperotti@jupyter ~]$ ~/.julia/conda/3/x86_64/bin/jupyter notebook --no-browser --port=1234
                 
-           Deberá aparecer un link como el siguiente:
+           Deberá aparecer, entre otras cosas, un link como el siguiente:
            
                 http://localhost:1234/?token=346e35e52098854117eb109f5419111df556139c4a550320
 
-        8. Copie el link y péguelo en su navegador. Deberá abrirse el administrador de notebooks de **Jupyter**, y deberá ver en el mismo el contenido de su carpeta de usuario en el nodo `jupyter` del CCAD.
-        
+        8. Copie el link y péguelo en su navegador. En el mismo, deberá abrirse el administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. Por ende, deberá ver en el mismo, el contenido de su carpeta de usuario en el CCAD.
