@@ -70,4 +70,7 @@
            
                 julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings")
                 
+        6. Luego de instalar los paquetes, salga de la consola de Julia ejecutando:
+        
+                julia> 
         
