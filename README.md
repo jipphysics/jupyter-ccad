@@ -36,11 +36,12 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
   
 Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos utilizar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html). En particular, le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD.
 
-
 ### Instalando Jupyter vía Julia 
 
-Si a Ud. le interesa usar notebooks de **Julia** también puede utilizar **micromamba**. Alternativamente, puede realizar los siguientes pasos:
-  
+Alternativamente a utlizar `micromamba`, se puede instalar el administrador de notebooks de **Jupyter** vía el administrador de paquetes de **Julia**. Para ello, primero hay que instalar **Julia** y luego instalar **Jupyter** vía **Julia**.
+
+#### Instalando Julia
+
 1. Seleccione y copie de [https://julialang.org/downloads/](https://julialang.org/downloads/) el archivo comprimido con la versión de Julia que desea bajar. Por ejemplo:
 
     https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
@@ -77,7 +78,7 @@ Esto iniciará una consola de **Julia**
 
         julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("FileIO"); Pkg.add("JLD2")
                 
-### Instalando e iniciando Jupyter
+#### Instalando e iniciando Jupyter desde Julia
 
 **Julia** y **Jupyter** son programas diferentes. **Julia** es un lenguaje de programación y **Jupyter** un administrador de notebooks. A continuación instalaremos **Jupyter** vía **Julia**. Para ello:
                 
@@ -117,7 +118,7 @@ Esto iniciará una consola de **Julia**
 
 5. Copie el link y péguelo en el navegador de su computadora de escritorio. En el mismo, deberá abrirse un administrador de notebooks de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. Deberá ver en el mismo, el contenido de su carpeta de usuario en el CCAD.
 
-### Iniciando Jupyter en sesiones posteriores
+#### Iniciando Jupyter en sesiones posteriores
 
 1. Conectese al nodo `jupyter` ejecutando en una terminal:
 
