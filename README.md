@@ -32,9 +32,33 @@
 
 Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**, como se describe a continuación.
   
-### Instalando Jupyter vía Mamba
+### Instalando Jupyter vía `micromamba`
   
-Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos utilizar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html). En particular, le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD.
+Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos:
+
+#### Instalar micromamba
+
+Para instalar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD. 
+
+Alternativamente, explicamos aquí como hacerlo:
+
+1.
+
+2.
+
+#### Crear un environment en `micromamba`
+
+
+
+#### Instalar Jupyter en el environment creado en `micromamba`
+
+
+#### Instalar Julia
+
+
+#### Anexar Julia al Jupyter del environment de `micromamba`
+
+
 
 ### Instalando Jupyter vía Julia 
 
