@@ -34,29 +34,60 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
   
 ### Instalando Jupyter vía `micromamba`
   
-Si a Ud. le interesa usar notebooks de **Python** o **R**, le recomendamos:
+1. En la terminal conectada al nodo `jupyter` del CCAD, baje `micromamba`:
 
-#### Instalar micromamba
+        [jperotti@jupyter ~] curl micro.mamba.pm/install.sh | bash
 
-Para instalar el administrador de entornos de [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), le recomendamos seguir el [tutorial](https://gitlab.com/-/snippets/2527216) proveído por los sysadmins del CCAD. 
+2. Cree un entorno nuevo con `micromamba`:
 
-Alternativamente, explicamos aquí como hacerlo:
+        [jperotti@jupyter ~]$ micromamba create -n notebook-env
+        
+3. Active el nuevo entorno:
 
-1.
+        [jperotti@jupyter ~]$ micromamba activate notebook-env
 
-2.
+4. Instale **Jupyter** en el nuevo entorno:
 
-#### Crear un environment en `micromamba`
+        [jperotti@jupyter ~]$ micromamba install -c anaconda jupyter      
 
+### Instaland Julia en Jupyter
 
+5. Baje **Julia**:
 
-#### Instalar Jupyter en el environment creado en `micromamba`
+        [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
+        
+6. Descomprima **Julia**:
 
+        [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
+        
+    Esto creará una carpeta `julia-1.9.1` en su carpeta de usuario.
+    
+6. Inicie la terminal de **Julia**:
 
-#### Instalar Julia
+        (notebook-env) [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia 
+                       _
+           _       _ _(_)_     |  Documentation: https://docs.julialang.org
+          (_)     | (_) (_)    |
+           _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+          | | | | | | |/ _` |  |
+          | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+         _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+        |__/                   |
+
+        julia>
+    
+7. Instale algunos paquetes necesarios de **Julia**, incluyendo **IJulia** (la interface entre Julia y Jupyter)
+
+        julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("NBInclude")
+
 
 
 #### Anexar Julia al Jupyter del environment de `micromamba`
+
+
+
+
+
 
 
 
