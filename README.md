@@ -105,7 +105,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
         ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
 
-    Observe cómo el número de puerto indicado al comando `ssh` coincide con el especificado en el link anterior. Si estos números no coinciden, el link no funcionará.
+    Observe cómo hemos elegido el número de puerto indicado al comando `ssh` para que coincida con el especificado en el link anterior. Si estos números no coinciden, el link no funcionará.
 
 9. Luego, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
 
@@ -113,7 +113,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
 Con el administrador de notebooks de **Jupyter**, abra el archivo 
 
-        `simulation.ipynb` 
+          simulation.ipynb
         
 que proveemos en el repositorio. Allí mostramos como paralelizar simulaciones y guardar datos de manera serializada.
 
