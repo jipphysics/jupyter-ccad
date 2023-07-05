@@ -12,7 +12,7 @@
 #SBATCH --nodes=1
 
 ### Cores a utilizar por nodo = procesos por nodo * cores por proceso
-#SBATCH --ntasks-per-node=64
+#SBATCH --ntasks-per-node=1
 ### Cores por proceso (para MPI+OpenMP)
 #SBATCH --cpus-per-task=1
 
@@ -32,7 +32,7 @@
 # Configurar OpenMP y otras bibliotecas que usan threads
 # usando los valores especificados arriba
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
-export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
+# export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 # Cargar los módulos para la tarea
 # module load quantum-espresso/6.7
