@@ -1,24 +1,6 @@
-# jupyter-ccad
+# Cómo usar el nodo `jupyter` del CCAD?
 
-## ¿Que ventajas trae usar **jupyter notebooks**?
-
-1. Ud. puede programar, calcular, analizar resultados, comentarlos y graficarlos, en un mismo entorno de trabajo.
-
-2. Facilita el paradigma de programación interactiva o [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (Read, Eval, Print, Loop). Esto le permite a Ud. evaluar el código a medida que lo va desarrollando, acelerando el proceso y reduciendo la probabilidad de que se cometan errores.
-
-## ¿Que ventajas trae usar **jupyter notebooks** en el cluster `jupyter` del CCAD?
-
-1. Poder usar notebooks de [Julia](https://julialang.org/), [Python](https://www.python.org/) o [R](https://www.r-project.org/) para desarrollar y testear código en el nodo `jupyter` del **CCAD**.
-
-2. Luego, usar el cluster `serafin` y/o el cluster `mendieta` para lanzar grandes corridas.
-
-3. Usar [serialización](https://es.wikipedia.org/wiki/Serializaci%C3%B3n) para almacenar los datos. Por ejemplo, usar [pickle](https://docs.python.org/3/library/pickle.html) en **Python** o [JLD2](https://github.com/JuliaIO/JLD2.jl) en **Julia**.
-
-4. Volver a usar notebooks para analizar y graficar los resultados.
-
-## ¿Cómo usar el nodo `jupyter` del CCAD?
-
-### Conectarse al nodo
+## Conectarse al nodo
 
 1. Abrir una cuenta en el CCAD llenando un formulario: [https://ccad.unc.edu.ar/servicios/pedido-de-cuentas/](https://ccad.unc.edu.ar/servicios/pedido-de-cuentas/). Los **sysadmin** del CCAD le abrirán una cuenta para acceder a los clusters, y para acceder a un chat de consultas en Zulip: [https://ccadunc.zulipchat.com](https://ccadunc.zulipchat.com). Recomendamos utilizar **Zulip** para evacuar sus dudas.
 
@@ -32,7 +14,7 @@
 
 Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**, como se describe a continuación.
   
-### Instalando Jupyter vía Micromamba
+## Instalando Jupyter vía Micromamba
   
 1. En la terminal conectada al nodo `jupyter` del CCAD, baje **Micromamba**:
 
@@ -50,7 +32,150 @@ Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste 
 
         (notebook-env) [jperotti@jupyter ~]$ micromamba install -c anaconda jupyter      
 
-### Instalando Julia en Jupyter
+5. Inicie una sesión de **Jupyter** en modo `no-browser` y vía el puerto especificado en el inciso **3.** durante la apertura de la sesión remota:
+
+        (notebook-env) [jperotti@jupyter ~]$ jupyter notebook --no-browser --port=8890
+
+6. Al abrirse, **Jupyter** proveerá de un link:
+
+        http://localhost:8890/?token=c845f9ac70ca2e4bde0be714072c6fe52e59511b77047cc6
+                           
+    que Ud. tiene que copiar y pegar en su navegador para acceder a la sesión de Jupyter inciada.
+
+## Instalando Jupyter vía Julia
+
+### Instalando Julia
+
+En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter**, ya que **Julia** hará su propia instalación.
+
+1. Baje **Julia**:
+
+        [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
+
+2. Descomprima **Julia**:
+
+        [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
+        
+    Esto creará una carpeta `julia-1.9.1` en su carpeta de usuario.
+
+3. Inicie la terminal de **Julia**:
+
+        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia 
+                       _
+           _       _ _(_)_     |  Documentation: https://docs.julialang.org
+          (_)     | (_) (_)    |
+           _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+          | | | | | | |/ _` |  |
+          | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+         _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+        |__/                   |
+
+        julia>
+        
+4. Para "salir", cierre la consola de **Julia** tipeando:
+
+        julia> exit()
+                
+    y cierre su sesión remota tipeando:
+    
+        [jperotti@jupyter ~]$ exit
+
+### Instalando e iniciando Jupyter vía IJulia
+
+1. Instale algunos paquetes de **Julia** que necesitaremos para trabajar:
+
+        julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("NBInclude"); Pkg.add("BenchmarkTools"); Pkg.add("Random"); Pkg.add("FileIO"); Pkg.add("JLD2"); Pkg.add("Dates")
+
+2. Active el paquete **IJulia** e inicie una notebook:
+
+        julia> using IJulia
+        julia> notebook(detached=true)
+        
+    Si **IJulia** le pregunte si desea instalar **Jupyter** vía conda, dígale que si. **IJulia** instalará e iniciará una sesión de **Jupyter**- Si no le pregunta, **IJulia** ha encontrado e iniciado alguna instalación preexistente de **Jupyter**.
+        
+3. Una vez que **Jupyter** está activo, ejecute los siguientes comandos para visualizar el link que deberá copiar y pegar en su navegador para acceder a **Jupyter**:
+    
+        julia> jupyter = IJulia.find_jupyter_subcommand("")[1]
+        julia> run(`$(jupyter) notebook list`)
+        Currently running servers:
+        http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4 :: /home/jperotti
+        Process(`/home/jperotti/micromamba/envs/notebook-env/bin/jupyter notebook list`, ProcessExited(0))
+
+    El link en cuestión es:
+    
+        http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4
+      
+5. Para "salir", cierre sus notebooks, cierre **Jupyter** cliqueando `Quit` y cierre la consola de **Julia** tipeando:
+
+        julia> exit()
+
+6. Es importante notar que la sesión de **Jupyter** iniciada en **2.** aún sigue activa. Esto puede corroborarlo ejecutando:
+
+        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia 
+                       _
+           _       _ _(_)_     |  Documentation: https://docs.julialang.org
+          (_)     | (_) (_)    |
+           _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+          | | | | | | |/ _` |  |
+          | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+         _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+        |__/                   |
+
+        julia> using IJulia
+
+        julia> jupyter = IJulia.find_jupyter_subcommand("")[1]
+        "/home/jperotti/micromamba/envs/notebook-env/bin/jupyter"
+
+        julia> run(`$(jupyter) notebook list`)
+        Currently running servers:
+        http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4 :: /home/jperotti
+        Process(`/home/jperotti/micromamba/envs/notebook-env/bin/jupyter notebook list`, ProcessExited(0))
+
+    Para matar la sesión, ejecute en la terminal de bash ejecute:
+    
+        [jperotti@jupyter ~]$ ps -ef | grep 'jupyter-notebook'
+        jperotti 3520695       1  0 21:45 ?        00:00:00 /home/jperotti/micromamba/envs/notebook-env/bin/python /home/jperotti/micromamba/envs/notebook-env/bin/jupyter-notebook
+        
+    para identificar el `PID` (Process ID) que debe matar escribiendo:
+        
+        [jperotti@jupyter ~]$ kill 3520695
+    
+    Puede que existan varias sesiones de **Jupyter** corriendo en simultaneo. En dicho conviene identificar cada proceso por su fecha de inicio. Por ejemplo, `21:45` en el caso anterior.
+        
+### Trabajando en modo **detached** con `screen`
+
+
+
+
+### Trabajando en modo **detached**
+
+2. Inicie una notebook de **IJulia** en modo **detached**:
+
+        julia> using IJulia
+        julia> notebook(detached=true)
+        julia> exit()
+        
+
+### Serializando datos
+
+### Paralelizando
+
+### Corriendo en **Serafín**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Instalando Julia en Jupyter
 
 5. Baje **Julia**:
 
@@ -167,9 +292,11 @@ El comando [screen](https://linuxhint.com/linux-screen-command-tutorial/) permit
 
 11. Reabra el administrador de notebooks de **Jupyter**, copiando nuevamente el link en el navegador:
 
-12. Habra nuevamente la notebook `simulation.ipybn` en la que estaba trabajando.
+12. Abra nuevamente la notebook `simulation.ipybn` en la que estaba trabajando, para seguir trabajando como si nunca se hubiese desconectado.
 
 ## Serialización de datos
+
+La serialización de datos permite grabar objetos de tipo arbitrario en archivos de formato específicos para ello. Esto resulta muy conveniente para guardar resultados de simulaciones que puedan ser luego analizados en otras sesiones o notebooks. La librería [pickle](https://docs.python.org/3/library/pickle.html) sirve para tal propósito en el caso de **Python**, y la librería [JLD2]() para el caso de **Julia**.
 
 ## Paralelización usando threads
 
