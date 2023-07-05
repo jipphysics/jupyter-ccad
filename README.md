@@ -64,9 +64,9 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
         
     Esto creará una carpeta `julia-1.9.1` en su carpeta de usuario.
 
-4. Inicie la terminal de **Julia** usando 10 (o el número que le plazca) de threads:
+4. Inicie una consola de **Julia**:
 
-        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia -t 10
+        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
                        _
            _       _ _(_)_     |  Documentation: https://docs.julialang.org
           (_)     | (_) (_)    |
@@ -91,8 +91,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
         
 7. Una vez que **Jupyter** está activo, ejecute los siguientes comandos para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
     
-        julia> jupyter = IJulia.find_jupyter_subcommand("")[1]
-        julia> run(`$(jupyter) notebook list`)
+        julia> run(`$(IJulia.find_jupyter_subcommand("")[1]) notebook list`)
         Currently running servers:
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4 :: /home/jperotti
         Process(`/home/jperotti/micromamba/envs/jnb-env/bin/jupyter notebook list`, ProcessExited(0))
@@ -105,25 +104,25 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
         ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
 
-    Observe cómo hemos elegido el número de puerto indicado al comando `ssh` para que coincida con el especificado en el link anterior. Si estos números no coinciden, el link no funcionará.
-
+    Crucialmente, elegimos el mismo número de puerto que el indicado en el link.
+    
 9. Finalmente, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
+
+10. Abra con **Jupyter** el notebook para crear kernels que soporten multithreading `crear-kernel-multithread.ipynb` y cree un kernel que soporte 10 threads, y cierre el notebook.
 
 ### Paralelizando y serializando el almacenamiento de datos
 
-Con el administrador de notebooks de **Jupyter**, abra el archivo 
-
-          simulation.ipynb
-        
-que proveemos en el repositorio. Allí mostramos como paralelizar simulaciones y guardar datos de manera serializada.
+Con **Jupyter** abra el notebook `simulador.ipynb` que proveemos en el repositorio. Allí mostramos como paralelizar simulaciones y guardar datos de manera serializada.
 
 ### Lanzando grandes simulaciones en **Serafín**
 
-En el mismo directorio en que se encuentra simulation.ipynb, cree un script de **Julia** `mi-script.jl` con el contenido:
+En el mismo directorio en que se encuentra `simulador.ipynb`, cree un script de **Julia** `mi-script.jl` con el contenido:
 
         using NBInclude
-        @nbinclude("simulation.ipynb")
+        @nbinclude("simulador.ipynb")
 
 Y corra dicho script en la partición que crea conveniente y llamandolo un script de BATCH que incluya una linea como sigue
 
         srun ./julia-1.9.1/bin/julia -t 64 mi-script.jl
+        
+En donde `-t 64` especifica el uso de **64 threads** (recordar que un nodo de **Serafín** posee 64 cores).
