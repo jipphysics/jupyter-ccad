@@ -19,7 +19,7 @@
 ### Tiempo de ejecucion. Formato dias-horas:minutos.
 ### short:  <= 1 hora
 ### multi:  <= 2 días
-#SBATCH --time 2-0:00
+#SBATCH --time 0-0:05
 
 #---------------------------------------------------
 
