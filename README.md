@@ -108,7 +108,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
     
 9. Finalmente, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
 
-10. Abra con **Jupyter** el notebook para crear kernels que soporten multithreading `crear-kernel-multithread.ipynb` y cree un kernel que soporte 10 threads, y cierre el notebook.
+10. Abra con **Jupyter** el notebook para crear kernels que soporten multithreading `crear-kernel-multithread.ipynb`, cree un kernel que soporte 10 threads y cierre el notebook.
 
 ### Paralelizando y serializando el almacenamiento de datos
 
