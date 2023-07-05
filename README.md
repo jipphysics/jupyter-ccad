@@ -121,8 +121,8 @@ En el mismo directorio en que se encuentra `simulador.ipynb`, cree un script de 
         using NBInclude
         @nbinclude("simulador.ipynb")
 
-Y corra dicho script en la partición que crea conveniente y llamandolo un script de BATCH que incluya una linea como sigue
+Y corra dicho script en la partición que crea conveniente y llamandolo un script de BATCH (ver `submit-script.sh`) que incluya una linea como sigue
 
-        srun ./julia-1.9.1/bin/julia -t 64 simulador-script.jl
+        srun $HOME/julia-1.9.1/bin/julia -t 64 $HOME/jupyter-ccad/simulador-script.jl
         
 En donde `-t 64` especifica el uso de **64 threads** (recordar que un nodo de **Serafín** posee 64 cores).
