@@ -38,4 +38,4 @@ export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # module load quantum-espresso/6.7
 
 # Lanzar el programa
-srun $HOME/julia-1.9.1/bin/julia -t 64 mi-script.jl
+srun $HOME/julia-1.9.1/bin/julia -t 64 simulador-script.jl
