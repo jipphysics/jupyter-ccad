@@ -107,7 +107,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
     Observe cómo hemos elegido el número de puerto indicado al comando `ssh` para que coincida con el especificado en el link anterior. Si estos números no coinciden, el link no funcionará.
 
-9. Luego, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
+9. Finalmente, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
 
 ### Paralelizando y serializando el almacenamiento de datos
 
@@ -117,7 +117,7 @@ Con el administrador de notebooks de **Jupyter**, abra el archivo
         
 que proveemos en el repositorio. Allí mostramos como paralelizar simulaciones y guardar datos de manera serializada.
 
-### Corriendo en **Serafín**
+### Lanzando grandes simulaciones en **Serafín**
 
 En el mismo directorio en que se encuentra simulation.ipynb, cree un script de **Julia** `mi-script.jl` con el contenido:
 
