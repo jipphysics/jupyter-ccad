@@ -89,6 +89,8 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
 ### Usando notebooks en modo `detached`
 
+El modo `detached` le permite a uno crear sesiones de **Jupyter** que permanezcan vivas aún luego de cerrar la terminal de bash. Esto le permite a Ud. desconectarse y reconectarse a la sesión que desee, desde la computadora que desee.
+
 1. Si no lo hizo, inicie nuevamente una consola de **Julia**:
 
         [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
