@@ -105,32 +105,37 @@ El modo `detached` le permite a uno crear sesiones de **Jupyter** que permanezca
 
         julia>
 
-2. Active el paquete **IJulia** e inicie una notebook:
+2. Active el paquete **IJulia** e inicie una sesión del administrador de notebooks de **Jupyter**:
 
         julia> using IJulia
         julia> notebook(detached=true)
         
     **NOTA:** Si **IJulia** le pregunte si desea instalar **Jupyter** vía conda, dígale que si. **IJulia** instalará e iniciará una sesión de **Jupyter**. Si no le pregunta, **IJulia** ha encontrado e iniciado alguna instalación preexistente de **Jupyter** (por ejemplo, la instalada vía **Micromamba**).
-        
-3. Una vez que **Jupyter** está activo, ejecute el siguiente comando para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
+                
+   **Aclaración:** Este comando iniciará una sesión de **Jupyter**, pero no accederá a ella. Para acceder, continúe con el siguiente punto.
+                
+3. Para acceder a las sesiones de **Jupyter** abiertas, Uds. necesita ejectuar el siguiente comando:
     
         julia> run(`$(IJulia.find_jupyter_subcommand("")[1]) notebook list`)
         
-    Esto imprimirá algo similar a lo siguiente:        
+    Esto imprimirá algo similar a lo siguiente:
         
         Currently running servers:
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4 :: /home/jperotti
         Process(`/home/jperotti/micromamba/envs/jnb-env/bin/jupyter notebook list`, ProcessExited(0))
 
-    Uds. necesita copiar el link. Es decir:
-    
+    Aquí, identificaremos links como el siguiente:
+
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4
+        
+    cada uno de los cuales corresponde a una sesión de **Jupyte** abierta.
       
-4. En su computadora, abra otra terminal de bash y loguéese nuevamente utilizando el comando:
+4. Para acceder a alguna de las sesiones abiertas, tiene que copiar y pegar en el navegador de su computadora el link correspondiente. Pero antes, tiene que habilitar una conección o tunneling a travéz del puerto indicado en el link.
+Para ello, abra otra terminal de bash y loguéese nuevamente utilizando (por ejemplo) el comando:
 
         juan@laptop> ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
 
-    Esto lo hacemos para elegir el mismo número de puerto que el indicado en el link. En este caso, el puerto `8890`.
+    Crucialmente, en este comando hemos especificado el mismo puerto que el indicado en el link. En este caso, el puerto `8890`.
     
 5. Finalmente, copie el link del inciso **3.** en el navegador de su computadora para acceder a la sesión de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. 
 
