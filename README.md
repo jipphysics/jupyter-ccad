@@ -12,7 +12,11 @@
         
     remplazando `usuario` por su nombre de usuario que le fué asignado al inscribirse. Si el puerto `1234` no funciona, pruebe con otros puertos. Por ejemplo `1235`, ..., `8888`, etc. Si usa **Windows**, asegúrese que el puerto que intenta utilizar no está bloqueado.
 
-Una vez en la terminal de bash en el nodo `jupyter`, el siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario. Existen diferentes formas de instalar **Jupyter**, como se describe a continuación.
+El siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario dentro del nodo `jupyter` del CCAD. Existen diferentes formas de instalar **Jupyter**. A continuación se describen dos alternativas:
+
+* La primera utilizando el administrador de entornos (o environments) [Micromamba](https://mamba.readthedocs.io/en/latest/index.html), el cual es similar a [Conda](https://docs.conda.io/en/latest/) pero más eficiente. Esta alternativa es conveniente si Ud. utiliza **Python**.
+
+* La segunda utilizando el administrador de paquetes de [Julia](https://julialang.org/), un lenguaje de programación moderno enfocado al cálculo científico.
   
 ## Instalando Jupyter vía Micromamba
   
@@ -78,18 +82,35 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
         julia>
         
-5. Instale algunos paquetes de **Julia** que necesitaremos para trabajar:
+5. Instale los siguientes paquetes de **Julia**, pués los necesitaremos para continuar:
 
         julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("NBInclude"); Pkg.add("BenchmarkTools"); Pkg.add("Random"); Pkg.add("FileIO"); Pkg.add("JLD2"); Pkg.add("Dates")
 
-6. Active el paquete **IJulia** e inicie una notebook:
+
+### Usando notebooks en modo `detached`
+
+1. Si no lo hizo, inicie nuevamente una consola de **Julia**:
+
+        [jperotti@jupyter ~]$ ./julia-1.9.1/bin/julia
+                       _
+           _       _ _(_)_     |  Documentation: https://docs.julialang.org
+          (_)     | (_) (_)    |
+           _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+          | | | | | | |/ _` |  |
+          | | |_| | | | (_| |  |  Version 1.9.1 (2023-06-07)
+         _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+        |__/                   |
+
+        julia>
+
+2. Active el paquete **IJulia** e inicie una notebook:
 
         julia> using IJulia
         julia> notebook(detached=true)
         
     **NOTA:** Si **IJulia** le pregunte si desea instalar **Jupyter** vía conda, dígale que si. **IJulia** instalará e iniciará una sesión de **Jupyter**- Si no le pregunta, **IJulia** ha encontrado e iniciado alguna instalación preexistente de **Jupyter**.
         
-7. Una vez que **Jupyter** está activo, ejecute los siguientes comandos para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
+3. Una vez que **Jupyter** está activo, ejecute los siguientes comandos para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
     
         julia> run(`$(IJulia.find_jupyter_subcommand("")[1]) notebook list`)
         Currently running servers:
@@ -100,29 +121,31 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
     
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4
       
-8. Abra otra terminal de bash y loguéese nuevamente utilizando el comando
+4. Abra otra terminal de bash y loguéese nuevamente utilizando el comando
 
         ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
 
     Crucialmente, elegimos el mismo número de puerto que el indicado en el link.
     
-9. Finalmente, copie el link del inciso **7.** en el navegador para acceder a la sesión de **Jupyter**. Puede que existan varias sesiones abiertas de **Jupyter** en simultaneo. Acceda a cada una de ellas para cerrarlas.
+5. Finalmente, copie el link del inciso **3.** en el navegador de su computadora para acceder a la sesión de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. 
 
-10. Abra con **Jupyter** el notebook para crear kernels que soporten multithreading `crear-kernel-multithread.ipynb`, cree un kernel que soporte 10 threads y cierre el notebook.
+    Puede que existan varias sesiones  de **Jupyter** abiertas en simultaneo en el nodo. Cada una de ellas corresponde a un link similar al que se ve en **3.**. Acceda a cada una de ellas travéz del link para cerrarlas desde su navegador.
 
 ### Paralelizando y serializando el almacenamiento de datos
 
-Con **Jupyter** abra el notebook `simulador.ipynb` que proveemos en el repositorio. Allí mostramos como paralelizar simulaciones y guardar datos de manera serializada.
+1. Abra con **Jupyter** el notebook para crear kernels que soporten multithreading `crear-kernel-multithread.ipynb`, cree un kernel que soporte 10 threads y cierre el notebook.
+
+2. Luego, abra el notebook `simulador.ipynb` que proveemos en el repositorio. En el [video de la charla](https://drive.google.com/file/d/13NVqKeXdZhRhCMvDj7SiIeu5KdoFYot4/view?usp=sharing) mostramos como paralelizar simulaciones y guardar datos de manera serializada.
 
 ### Lanzando grandes simulaciones en **Serafín**
 
-En el mismo directorio en que se encuentra `simulador.ipynb`, cree un script de **Julia** `simulador-script.jl` con el contenido:
+1. En el mismo directorio en que se encuentra `simulador.ipynb`, cree un script de **Julia** `simulador-script.jl` con el contenido:
 
         using NBInclude
         @nbinclude("simulador.ipynb")
 
-Y corra dicho script en la partición que crea conveniente y llamandolo un script de BATCH (ver `submit-script.sh`) que incluya una linea como sigue
+2. Corra dicho script en la partición que crea conveniente y llamandolo un script de BATCH (ver el ejemplo `submit-script.sh`) que incluya una linea como sigue
 
         srun $HOME/julia-1.9.1/bin/julia -t 64 $HOME/jupyter-ccad/simulador-script.jl
         
-En donde `-t 64` especifica el uso de **64 threads** (recordar que un nodo de **Serafín** posee 64 cores).
+    Aquí, la opción `-t 64` especifica el uso de **64 threads** (recordar que un nodo de **Serafín** posee 64 cores).
