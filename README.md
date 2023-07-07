@@ -110,22 +110,25 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
         
     **NOTA:** Si **IJulia** le pregunte si desea instalar **Jupyter** vía conda, dígale que si. **IJulia** instalará e iniciará una sesión de **Jupyter**. Si no le pregunta, **IJulia** ha encontrado e iniciado alguna instalación preexistente de **Jupyter** (por ejemplo, la instalada vía **Micromamba**).
         
-3. Una vez que **Jupyter** está activo, ejecute los siguientes comandos para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
+3. Una vez que **Jupyter** está activo, ejecute el siguiente comando para visualizar el link que deberá copiar y pegar en su navegador para acceder al administrador de notebooks de **Jupyter**:
     
         julia> run(`$(IJulia.find_jupyter_subcommand("")[1]) notebook list`)
+        
+    Esto imprimirá algo similar a lo siguiente:        
+        
         Currently running servers:
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4 :: /home/jperotti
         Process(`/home/jperotti/micromamba/envs/jnb-env/bin/jupyter notebook list`, ProcessExited(0))
 
-    Es decir, en este caso, el link en cuestión es:
+    Uds. necesita copiar el link. Es decir:
     
         http://localhost:8890/?token=b6ffb46d7875678903fdc07edf2988c51e27d5ab68a848b4
       
-4. Abra otra terminal de bash y loguéese nuevamente utilizando el comando
+4. En su computadora, abra otra terminal de bash y loguéese nuevamente utilizando el comando:
 
-        ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
+        juan@laptop> ssh -i /home/juan/hdd-juan/.ssh/id_rsa -L 8890:localhost:8890 jperotti@jupyter.ccad.unc.edu.ar
 
-    Crucialmente, elegimos el mismo número de puerto que el indicado en el link.
+    Esto lo hacemos para elegir el mismo número de puerto que el indicado en el link. En este caso, el puerto `8890`.
     
 5. Finalmente, copie el link del inciso **3.** en el navegador de su computadora para acceder a la sesión de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. 
 
