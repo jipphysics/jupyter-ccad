@@ -132,7 +132,7 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
     
 5. Finalmente, copie el link del inciso **3.** en el navegador de su computadora para acceder a la sesión de **Jupyter** que está corriendo en el nodo `jupyter` del CCAD. 
 
-    Luego de varia sesiones, puede que Uds. tenga varias sesiones de **Jupyter** simultaneamente abiertas en el nodo. Cada una de ellas corresponde a un link similar al que se ve en **3.**. Utilice dichos links para acceder a ellas desde su navegador. En particular, acceda a ellas para cerrarlas. Alternativamente, si Uds. conoce como usar terminales de Linux, puede visualizar y matar las sesiones abiertas con el comando `htop` o el comando `ps`.
+    Luego de varia sesiones, puede que Uds. tenga varias sesiones de **Jupyter** simultaneamente abiertas en el nodo. Cada una de ellas corresponde a un link similar al que se ve en **3.**. Utilice dichos links para acceder a ellas desde su navegador. En particular, acceda a ellas para cerrarlas cliqueando en **Quit**. Alternativamente, si Uds. conoce como usar terminales de Linux, puede visualizar y matar las sesiones abiertas con el comando `htop` o el comando `ps`.
 
 ### Paralelizando y serializando el almacenamiento de datos
 
