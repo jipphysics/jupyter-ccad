@@ -46,9 +46,11 @@ El siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su car
                            
     que Ud. tiene que copiar y pegar en su navegador para acceder a la sesión de Jupyter inciada.
     
-6. Para "salir", cierre sus notebooks, cierre **Jupyter** cliqueando `Quit` y cierre la consola de **Julia** tipeando:
+6. Para "salir", cierre sus notebooks y cierre **Jupyter** cliqueando `Quit`. Luego puede desactivar los entornos de **Micromamba** tipeando:
 
-        julia> exit()   
+        jnb-env) [jperotti@jupyter ~]$ micromamba deactivate
+        (base) [jperotti@jupyter ~]$ micromamba deactivate
+        [jperotti@jupyter ~]$        
 
 ## Instalando Jupyter vía Julia
 
@@ -82,10 +84,13 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
         julia>
         
-5. Instale los siguientes paquetes de **Julia**, pués los necesitaremos para continuar:
+     Si desea salir de la consola de **Julia** tipee:
+
+        julia> exit()   
+                
+5. En la consola de **Julia**, instale los paquetes de **Julia** que necesitaremos, tipeando:
 
         julia> using Pkg; Pkg.add("IJulia"); Pkg.add("Plots"); Pkg.add("LaTeXStrings"); Pkg.add("NBInclude"); Pkg.add("BenchmarkTools"); Pkg.add("Random"); Pkg.add("FileIO"); Pkg.add("JLD2"); Pkg.add("Dates")
-
 
 ### Usando notebooks en modo `detached`
 
