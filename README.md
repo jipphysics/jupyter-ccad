@@ -48,7 +48,7 @@ El siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su car
     
 6. Para "salir", cierre sus notebooks y cierre **Jupyter** cliqueando `Quit`. Luego puede desactivar los entornos de **Micromamba** tipeando:
 
-        jnb-env) [jperotti@jupyter ~]$ micromamba deactivate
+        (jnb-env) [jperotti@jupyter ~]$ micromamba deactivate
         (base) [jperotti@jupyter ~]$ micromamba deactivate
         [jperotti@jupyter ~]$        
 
