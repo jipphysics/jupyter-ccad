@@ -14,7 +14,7 @@
 
 El siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su carpeta de usuario dentro del nodo `jupyter` del CCAD. Existen diferentes formas de instalar **Jupyter**. A continuación se describen dos alternativas:
 
-* La primera utilizando el administrador de entornos (o environments) [Micromamba](https://mamba.readthedocs.io/en/latest/index.html), el cual es similar a [Conda](https://docs.conda.io/en/latest/) pero más eficiente. Esta alternativa es conveniente si Ud. utiliza **Python**.
+* La primera utilizando el administrador de entornos (o environments) [Micromamba](https://mamba.readthedocs.io/en/latest/index.html) el cual es similar a [Conda](https://docs.conda.io/en/latest/) pero más eficiente. Esta alternativa es conveniente si Ud. utiliza **Python**.
 
 * La segunda utilizando el administrador de paquetes de [Julia](https://julialang.org/), un lenguaje de programación moderno enfocado al cálculo científico.
   
