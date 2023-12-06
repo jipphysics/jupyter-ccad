@@ -66,6 +66,8 @@ En este caso, no hace falta utilizar **Micromamba** para instalar **Jupyter** ya
 
         [jperotti@jupyter ~]$ wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.1-linux-x86_64.tar.gz
 
+    Para bajar versiones más actualizadas de **Julia**, visite [https://julialang.org/downloads/](https://julialang.org/downloads/).
+
 3. Descomprima **Julia**:
 
         [jperotti@jupyter ~]$ tar -xf julia-1.9.1-linux-x86_64.tar.gz
