@@ -24,23 +24,25 @@ El siguiente paso consiste en instalar [Jupyter](https://jupyter.org/) en su car
 
         [jperotti@jupyter ~] curl micro.mamba.pm/install.sh | bash
 
-2. Cree un entorno nuevo con **Micromamba**:
+   Esta línea puede cambiar con las actualizaciones de **Micromamba**. En caso de que falle, lea la documentación pertinente en [https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html).
+
+3. Cree un entorno nuevo con **Micromamba**:
 
         [jperotti@jupyter ~]$ micromamba create -n jnb-env
         
-3. Active el nuevo entorno:
+4. Active el nuevo entorno:
 
         [jperotti@jupyter ~]$ micromamba activate jnb-env
 
-4. Con el entorno activado, instale **Jupyter**:
+5. Con el entorno activado, instale **Jupyter**:
 
         (jnb-env) [jperotti@jupyter ~]$ micromamba install -c anaconda jupyter      
 
-5. Inicie una sesión de **Jupyter** en modo `no-browser` y vía el puerto especificado en el inciso **3.** durante la apertura de la sesión remota:
+6. Inicie una sesión de **Jupyter** en modo `no-browser` y vía el puerto especificado en el inciso **3.** durante la apertura de la sesión remota:
 
         (jnb-env) [jperotti@jupyter ~]$ jupyter notebook --no-browser --port=1234
 
-6. Al abrirse, **Jupyter** proveerá de un link:
+7. Al abrirse, **Jupyter** proveerá de un link:
 
         http://localhost:1234/?token=c845f9ac70ca2e4bde0be714072c6fe52e59511b77047cc6
                            
